@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:the_basics/widgets/centered_view/centered_view.dart';
-import 'package:the_basics/widgets/course_details/course_details.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:the_basics/views/home/home_content_desktop.dart';
+import 'package:the_basics/views/home/home_content_mobile.dart';
 import 'package:the_basics/widgets/navegation_bar/navegation_bar.dart';
 
 class HomeView extends StatelessWidget {
@@ -8,20 +9,14 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.white,
-      body: CenteredView(
-          child: Column(children: <Widget>[
-        NavegationBar(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CourseDetails(),
-            SizedBox(width: 50),
-            Image(image: AssetImage('florconha.png'))
-          ],
-        )
-      ])),
-    );
+    return Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(children: <Widget>[
+          const NavegationBar(),
+          ScreenTypeLayout(
+            mobile: const HomeContentMobile(),
+            desktop: const HomeContentDesktop(),
+          )
+        ]));
   }
 }
